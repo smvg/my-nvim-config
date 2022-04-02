@@ -35,7 +35,10 @@ return require('packer').startup(function()
 	use {'kevinhwang91/nvim-hlslens'}
 
 	-- Fuzzy search
-	use({ "Yggdroot/LeaderF", cmd = "Leaderf", run = ":LeaderfInstallCExtension" })
+	use {
+	  'nvim-telescope/telescope.nvim',
+	  requires = { {'nvim-lua/plenary.nvim'} }
+	}
 
 	-- Theme
 	use({"lifepillar/vim-gruvbox8", opt = true})
