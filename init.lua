@@ -15,7 +15,10 @@ vim.opt.mouse = 'a'
 
 -- Numbers on the left
 vim.opt.number = true
-vim.opt.relativenumber = false
+vim.opt.relativenumber = true
+
+-- GUI font
+vim.opt.guifont = 'FiraCode Nerd Font:h16'
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -53,21 +56,52 @@ vim.api.nvim_set_keymap('i', 'ñ', ';', {noremap = true})
 vim.api.nvim_set_keymap('i', 'ç', '_', {noremap = true})
 
 -- Fuzzy search
-vim.api.nvim_set_keymap('', '<C-p>', ':Leaderf file --popup<CR>', {noremap = true})
+vim.api.nvim_set_keymap('', '<C-p>', ':Telescope find_files<CR>', {noremap = true})
+vim.api.nvim_set_keymap('', '<C-f>', ':Telescope live_grep<CR>', {noremap = true})
+vim.api.nvim_set_keymap('', '<C-b>', ':Telescope buffers<CR>', {noremap = true})
+vim.api.nvim_set_keymap('', '<space>ld', ':Telescope diagnostics<CR>', {noremap = true})
 
 -- Hop to a word
 vim.api.nvim_set_keymap('n', '<Tab>', ':HopWord<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', 'º', ':HopLineStart<CR>', {noremap = true})
 
--- Enable status bar
-require'lualine'.setup()
--- Enable hop
-require'hop'.setup()
-require'nvim-tree'.setup()
-require("bufferline").setup{}
+-- Toggle Nvim Tree
+vim.api.nvim_set_keymap('n', '§', ':NvimTreeToggle<CR>', {noremap = true})
+
+-- Git related stuff
+vim.api.nvim_set_keymap('n', '<space>gd', ':Gitsigns diffthis<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<C-g>', ':Neogit<CR>', {noremap = true})
+
+-- Reset keybindings
+vim.api.nvim_set_keymap('n', '<space>u', ':Gitsigns reset_hunk<CR>', {noremap = true})
+vim.api.nvim_set_keymap('n', '<space><C-u>', ':Gitsigns reset_buffer<CR>', {noremap = true})
+
+require 'lualine'.setup {}
+
+require 'hop'.setup {}
+
+require 'nvim-tree'.setup {}
+
+require "bufferline".setup {}
+
 require 'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    additional_vim_regex_highlighting = false,
-  },
+	highlight = {
+		enable = true,              -- false will disable the whole extension
+		additional_vim_regex_highlighting = false,
+	},
 }
+
+-- Git stuff
+require 'gitsigns'.setup {
+	current_line_blame = true
+}
+require 'neogit'.setup {}
+
+-- Null-ls stuff
+require 'null-ls'.setup({
+	sources = {
+		require 'null-ls'.builtins.formatting.stylua,
+		require 'null-ls'.builtins.diagnostics.eslint,
+		require 'null-ls'.builtins.code_actions.gitsigns
+	},
+})

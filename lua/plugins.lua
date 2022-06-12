@@ -36,8 +36,8 @@ return require('packer').startup(function()
 
 	-- Fuzzy search
 	use {
-	  'nvim-telescope/telescope.nvim',
-	  requires = { {'nvim-lua/plenary.nvim'} }
+		'nvim-telescope/telescope.nvim',
+		requires = { {'nvim-lua/plenary.nvim'} }
 	}
 
 	-- Theme
@@ -50,7 +50,7 @@ return require('packer').startup(function()
 	}
 
 	use { 'phaazon/hop.nvim' }
-	
+
 	use {
 		'kyazdani42/nvim-tree.lua',
 		requires = {
@@ -63,5 +63,18 @@ return require('packer').startup(function()
 	use "Pocco81/TrueZen.nvim"
 
 	use "rafamadriz/friendly-snippets"
-	
+
+	-- Git stuff
+	use {
+		'lewis6991/gitsigns.nvim',
+	}
+
+	use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+
+	-- Code action stuff
+	use {
+		'jose-elias-alvarez/null-ls.nvim',
+		requires = { {'nvim-lua/plenary.nvim'} }
+	}
+
 end)
