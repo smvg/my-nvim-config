@@ -80,6 +80,11 @@ vim.api.nvim_set_keymap('n', '<space><C-u>', ':Gitsigns reset_buffer<CR>', {nore
 vim.api.nvim_set_keymap('n', '<space>l', '<C-w>l', {noremap = true})
 vim.api.nvim_set_keymap('n', '<space>h', '<C-w>h', {noremap = true})
 
+-- Clipboard
+vim.api.nvim_set_keymap('n', '<C-c>', '"+y', {noremap = false})
+vim.api.nvim_set_keymap('v', '<C-c>', '"+y', {noremap = false})
+vim.api.nvim_set_keymap('i', '<C-v>', '<ESC>"+pa', {noremap = true})
+
 require 'lualine'.setup {}
 
 require 'hop'.setup {}
