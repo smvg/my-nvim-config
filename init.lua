@@ -76,6 +76,10 @@ vim.api.nvim_set_keymap('n', '<C-g>', ':Neogit<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<space>u', ':Gitsigns reset_hunk<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<space><C-u>', ':Gitsigns reset_buffer<CR>', {noremap = true})
 
+-- Window keybindings
+vim.api.nvim_set_keymap('n', '<space>l', '<C-w>l', {noremap = true})
+vim.api.nvim_set_keymap('n', '<space>h', '<C-w>h', {noremap = true})
+
 require 'lualine'.setup {}
 
 require 'hop'.setup {}
