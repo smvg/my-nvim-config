@@ -2,7 +2,7 @@
 
 source utils.sh
 
-BIN_DEPENDENCIES="nvim nimlsp clangd pylsp"
+BIN_DEPENDENCIES="nvim nimlsp clangd pylsp rust-analyzer tree-sitter"
 NPM_DEPENDENCIES="bash-language-server"
 
 # Make sure everything is installed

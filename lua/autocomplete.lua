@@ -125,17 +125,22 @@ nvim_lsp.bashls.setup {
 	capabilities=capabilities,
 }
 
-nvim_lsp.rls.setup {
-	on_attach=on_attach,
+nvim_lsp.rust_analyzer.setup({
+	on_attach = on_attach,
 	capabilities=capabilities,
-	settings={
-		rust={
-			unstable_features = true,
-			build_on_save = false,
-			all_features = true,
-		}
-	},
-}
+})
+
+-- nvim_lsp.rls.setup {
+-- 	on_attach=on_attach,
+-- 	capabilities=capabilities,
+-- 	settings={
+-- 		rust={
+-- 			unstable_features = true,
+-- 			build_on_save = false,
+-- 			all_features = true,
+-- 		}
+-- 	},
+-- }
 
 nvim_lsp.csharp_ls.setup {
 	on_attach=on_attach,
@@ -144,6 +149,11 @@ nvim_lsp.csharp_ls.setup {
 
 nvim_lsp.jdtls.setup {
 	cmd={'jdtls'},
+	on_attach=on_attach,
+	capabilities=capabilities,
+}
+
+nvim_lsp.sourcekit.setup {
 	on_attach=on_attach,
 	capabilities=capabilities,
 }

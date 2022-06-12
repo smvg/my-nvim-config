@@ -17,6 +17,9 @@ vim.opt.mouse = 'a'
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- Ignore case
+vim.opt.ignorecase = true
+
 -- GUI font
 vim.opt.guifont = 'FiraCode Nerd Font:h16'
 
@@ -36,16 +39,16 @@ vim.api.nvim_set_keymap('n', 'zz', ':update<CR>', {noremap = true})
 -- Exit and save file
 vim.api.nvim_set_keymap('n', 'zx', ':x<CR>', {noremap = true})
 
+-- q should be the same as Q
+vim.api.nvim_create_user_command('Q', 'q', { nargs = 0 })
+vim.api.nvim_create_user_command('Wq', 'wq', { nargs = 0 })
+
 -- Search in file
 vim.api.nvim_set_keymap('n', '-', '/', {noremap = true})
 -- Dont show search
 vim.api.nvim_set_keymap('n', '<Esc><Esc>', ':nohl<CR>', {noremap = true})
 
 -- Go to start, end of file and line
--- vim.api.nvim_set_keymap('n', 'H', '0', {noremap = true})
--- vim.api.nvim_set_keymap('n', 'L', '$', {noremap = true})
--- vim.api.nvim_set_keymap('n', 'K', 'gg', {noremap = true})
--- vim.api.nvim_set_keymap('n', 'J', 'G', {noremap = true})
 vim.api.nvim_set_keymap('n', 'H', '^', {noremap = true})
 vim.api.nvim_set_keymap('n', 'L', '$', {noremap = true})
 vim.api.nvim_set_keymap('n', 'K', '<C-u>', {noremap = true})
@@ -79,11 +82,17 @@ vim.api.nvim_set_keymap('n', '<space><C-u>', ':Gitsigns reset_buffer<CR>', {nore
 -- Window keybindings
 vim.api.nvim_set_keymap('n', '<space>l', '<C-w>l', {noremap = true})
 vim.api.nvim_set_keymap('n', '<space>h', '<C-w>h', {noremap = true})
+vim.api.nvim_set_keymap('n', '<space>k', '<C-w>k', {noremap = true})
+vim.api.nvim_set_keymap('n', '<space>j', '<C-w>j', {noremap = true})
 
 -- Clipboard
 vim.api.nvim_set_keymap('n', '<C-c>', '"+y', {noremap = false})
 vim.api.nvim_set_keymap('v', '<C-c>', '"+y', {noremap = false})
 vim.api.nvim_set_keymap('i', '<C-v>', '<ESC>"+pa', {noremap = true})
+
+-- Terminal keybindings
+vim.api.nvim_set_keymap('t', 'jj', '<C-\\><C-n>', {noremap = false})
+vim.api.nvim_set_keymap('n', '<C-t>', ':term<CR>', {noremap = false})
 
 require 'lualine'.setup {}
 
