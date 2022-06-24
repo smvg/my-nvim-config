@@ -44,10 +44,13 @@ return require('packer').startup(function()
 	use({"lifepillar/vim-gruvbox8", opt = true})
 	-- jj to escape without delays
 	use {'jdhao/better-escape.vim', event = 'InsertEnter'}
+
+	-- Treesitter (with docs)
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate'
 	}
+	use { 'nvim-treesitter/nvim-tree-docs' }
 
 	use { 'phaazon/hop.nvim' }
 
