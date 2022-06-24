@@ -31,7 +31,7 @@ vim.opt.listchars = {tab = '» ', extends = '›', precedes = '‹', trail = '·
 
 -- Exit normal mode
 vim.g.better_escape_shortcut = 'jj'
-vim.g.better_escape_interval = 200
+vim.g.better_escape_interval = 500
 -- vim.api.nvim_set_keymap('i', 'jj', '<Esc>', {noremap = true})
 
 -- Update file
@@ -57,6 +57,7 @@ vim.api.nvim_set_keymap('n', 'J', '<C-d>', {noremap = true})
 -- Substitute characters I don't use
 vim.api.nvim_set_keymap('i', 'ñ', ';', {noremap = true})
 vim.api.nvim_set_keymap('i', 'ç', '_', {noremap = true})
+vim.api.nvim_set_keymap('n', '_', ':%s<', {noremap = true})
 
 -- Fuzzy search
 vim.api.nvim_set_keymap('', '<C-p>', ':Telescope find_files<CR>', {noremap = true})
@@ -94,6 +95,9 @@ vim.api.nvim_set_keymap('i', '<C-v>', '<ESC>"+pa', {noremap = true})
 vim.api.nvim_set_keymap('t', 'jj', '<C-\\><C-n>', {noremap = false})
 vim.api.nvim_set_keymap('n', '<C-t>', ':term<CR>', {noremap = false})
 
+-- Easily replace when text is selected
+vim.api.nvim_set_keymap('v', '_', '"hy:%s/<C-r>h//g<left><left>', {noremap = false})
+
 require 'lualine'.setup {}
 
 require 'hop'.setup {}
@@ -120,6 +124,19 @@ require 'null-ls'.setup({
 	sources = {
 		require 'null-ls'.builtins.formatting.stylua,
 		require 'null-ls'.builtins.diagnostics.eslint,
-		require 'null-ls'.builtins.code_actions.gitsigns
+		require 'null-ls'.builtins.code_actions.gitsigns,
+        require 'null-ls'.builtins.diagnostics.vale,
 	},
 })
+
+-- Treesitter
+require "nvim-treesitter.configs".setup {
+	tree_docs = {
+		enable = true,
+		keymaps = {
+			doc_all_in_range = ";",
+			doc_node_at_cursor = ";",
+			edit_doc_at_cursor = "<space>e"
+		},
+	},
+}
