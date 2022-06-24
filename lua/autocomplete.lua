@@ -157,3 +157,13 @@ nvim_lsp.sourcekit.setup {
 	on_attach=on_attach,
 	capabilities=capabilities,
 }
+
+nvim_lsp.julials.setup {
+	on_attach=on_attach,
+	capabilities=capabilities,
+}
+
+nvim_lsp.gopls.setup {
+	on_attach=on_attach,
+	capabilities=capabilities,
+}
